@@ -43,3 +43,29 @@ button {
     margin-left: 180px;
   }
 }
+.floatBtn {
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+}
+.secondFloatBtn {
+  position: fixed;
+  bottom: 60px;
+  right: 200px;
+}
+.modal {
+  max-width: 500px;
+  max-height: 400px;
+  background-color: #fff;
+  margin: 100px auto;
+  overflow-y: auto;
+}
+
+.modal .modal-title {
+  text-align: center;
+  padding: 1rem;
+}
+
+.modal .modal-content {
+  padding: 1rem;
+}
