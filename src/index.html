@@ -13,6 +13,18 @@
     <title>CommentsBlog</title>
   </head>
   <body>
+    <button
+      class="mui-btn mui-btn--large mui-btn--danger mui-btn--raised floatBtn"
+      id="modalBtn1"
+    >
+      Sign Up
+    </button>
+    <button
+      class="mui-btn mui-btn--large mui-btn--danger mui-btn--raised secondFloatBtn"
+      id="modalBtn2"
+    >
+      Sign In
+    </button>
     <div id="sidebar">
       <div class="mui--text-light mui--text-display1 mui--align-vertical">
         COMMENTS BLOG
@@ -30,13 +42,12 @@
           <br />
           <form class="mui-form" id="comment-form">
             <div class="mui-textfield mui-textfield--float-label">
-              <input type="text" id="comment-input" name="theme" />
+              <input type="text" id="comment-input" />
               <label for="comment-input">Комментарий на тему:</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
               <textarea
                 id="comment-area"
-                name="comment"
                 rows="5"
                 cols="33"
                 required
@@ -44,6 +55,7 @@
               <label for="comment-area">Ваш комментарий</label>
             </div>
             <button
+              id="comment-btn"
               type="submit"
               class="mui-btn mui-btn--raised mui-btn--danger"
               disabled
@@ -55,7 +67,7 @@
           <div class="mui--text-dark-secondary mui--text-body2">
             ВАШИ КОММЕНТАРИИ
           </div>
-          <div class="mui-divider"></div>
+          <div class="mui-divider" id="comment-list"></div>
           <br />
           <!-- blog goes here -->
           <br />
