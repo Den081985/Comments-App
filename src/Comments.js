@@ -35,7 +35,36 @@ export class Comments {
     list.innerHTML = html;
   }
   //метод для работы с idToken,полученным с сервера
-  static fetch() {}
+  static fetch(token) {
+    if (!token) {
+      return Promise.resolve(
+        "<p class='comment-error'>Отсутствует Авторизация</p>"
+      );
+    }
+    return fetch(
+      `https://comments-app-1bb46-default-rtdb.firebaseio.com/comments.json?auth=${token}`
+    )
+      .then((response) => response.json())
+      .then((content) => {
+        if (content && content.error) {
+          return `<p class='comment-error'>${content.error}</p>`;
+        }
+        return content
+          ? Object.keys(content).map((key) => ({
+              ...content[key],
+              id: key,
+            }))
+          : [];
+      });
+  }
+  //метод для рендериноа списка комментариев
+  static listHTML(comments) {
+    return comments.length
+      ? `<ul>${comments
+          .map((comment) => `<li>${comment.comment}</li>`)
+          .join("")}</ul>`
+      : "<p>КОММЕНТАРИЕВ НЕТ</p>";
+  }
 }
 
 //функция для добавления комментариев из LocalStorage
