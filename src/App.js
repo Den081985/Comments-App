@@ -1,7 +1,7 @@
 import "./styles.css";
 import { Comments } from "./Comments";
 import { isValid, activateModal } from "./Utils";
-import { getAuthForm } from "./Auth";
+import { getAuthForm, enterAuthForm, enterWithEmailAndPassword } from "./Auth";
 
 const form = document.getElementById("comment-form");
 const input = form.querySelector("#comment-input");
@@ -17,6 +17,10 @@ commentArea.addEventListener("input", () => {
 });
 
 modalBtn1.addEventListener("click", openModal);
+
+modalBtn2.addEventListener("click", enterModal);
+
+window.addEventListener("load", Comments.render);
 
 function submitForm(event) {
   event.preventDefault();
@@ -46,10 +50,44 @@ function openModal() {
     .addEventListener("submit", authFormHandler, { once: true });
 }
 
+//функция рендеринга модального окна входа
+
+function enterModal() {
+  activateModal("ВХОД", enterAuthForm());
+  document
+    .getElementById("enter-form")
+    .addEventListener("submit", enterFormHandler);
+}
+//функция для работы с данными регистрации
 function authFormHandler(e) {
   e.preventDefault();
 
-  const email = e.target.querySelector("email").value;
-  const password = e.target.querySelector("password").value;
-  const name = e.target.querySelector("name").value;
+  const email = e.target.querySelector("#email").value;
+  const password = e.target.querySelector("#password").value;
+  const name = e.target.querySelector("#name").value;
+}
+
+//функция для работы с данными входа
+
+function enterFormHandler(e) {
+  e.preventDefault();
+
+  const email = e.target.querySelector("#email").value;
+  const password = e.target.querySelector("#password").value;
+  const btn = e.target.querySelector("button");
+
+  btn.disabled = true;
+
+  enterWithEmailAndPassword(email, password)
+    .then(Comments.fetch)
+    .then(renderModalAfterAuth)
+    .then(() => (btn.disabled = false));
+}
+
+function renderModalAfterAuth(content) {
+  if (typeof content === "string") {
+    activateModal("ОШИБКА", content);
+  } else {
+    activateModal("КОММЕНТАРИИ", Comments.listHTML(content));
+  }
 }
