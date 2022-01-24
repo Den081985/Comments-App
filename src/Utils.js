@@ -15,3 +15,18 @@ export function activateModal(title, content) {
 
   mui.overlay("on", modal);
 }
+
+export function AuthActivate(localId) {
+  let auth = document.createElement("div");
+
+  auth.classList.add("modal");
+
+  const html = `
+  <div class = "modal-title">ПОЗДРАВЛЯЕМ! ВЫ ЗАРЕГИСТРИРОВАНЫ!</div>
+  <div class = "modal-content">Ваш Uid: ${localId}</div>
+  `;
+
+  auth.innerHTML = html;
+
+  mui.overlay("on", auth);
+}
