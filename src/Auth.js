@@ -55,3 +55,20 @@ export function enterWithEmailAndPassword(email, password) {
     .then((response) => response.json())
     .then((data) => data.idToken);
 }
+
+export function authWithEmailAndPassword(email, password, name) {
+  const apiKey = "AIzaSyCoTMEZUBN6EV8wj8oOGwZkzwyydXR8P0Q";
+
+  return fetch(
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
+    {
+      method: "POST",
+      body: JSON.stringify({ email, password, returnSecureToken: true }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => data.localId);
+}
