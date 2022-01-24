@@ -1,7 +1,12 @@
 import "./styles.css";
 import { Comments } from "./Comments";
-import { isValid, activateModal } from "./Utils";
-import { getAuthForm, enterAuthForm, enterWithEmailAndPassword } from "./Auth";
+import { isValid, activateModal, AuthActivate } from "./Utils";
+import {
+  getAuthForm,
+  enterAuthForm,
+  enterWithEmailAndPassword,
+  authWithEmailAndPassword,
+} from "./Auth";
 
 const form = document.getElementById("comment-form");
 const input = form.querySelector("#comment-input");
@@ -65,6 +70,13 @@ function authFormHandler(e) {
   const email = e.target.querySelector("#email").value;
   const password = e.target.querySelector("#password").value;
   const name = e.target.querySelector("#name").value;
+  const btn = e.target.querySelector("button");
+
+  btn.disabled = true;
+
+  authWithEmailAndPassword(email, password, name)
+    .then(AuthActivate)
+    .then(() => (btn.disabled = false));
 }
 
 //функция для работы с данными входа
