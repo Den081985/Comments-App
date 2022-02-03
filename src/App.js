@@ -14,6 +14,7 @@ const submitBtn = form.querySelector("#comment-btn");
 const commentArea = form.querySelector("#comment-area");
 const modalBtn1 = document.getElementById("modalBtn1");
 const modalBtn2 = document.getElementById("modalBtn2");
+const sidebarBtn = document.getElementById("sidebarBtn");
 
 form.addEventListener("submit", submitForm);
 //валидация textarea
@@ -25,7 +26,9 @@ modalBtn1.addEventListener("click", openModal);
 
 modalBtn2.addEventListener("click", enterModal);
 
-window.addEventListener("load", Comments.render);
+sidebarBtn.addEventListener("click", Comments.render);
+
+// window.addEventListener("load", Comments.render);
 
 function submitForm(event) {
   event.preventDefault();
