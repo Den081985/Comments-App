@@ -22,6 +22,7 @@ button {
 #sidebar {
   background-color: #e57373;
   padding: 15px;
+  position: relative;
 }
 
 @media (min-width: 768px) {
@@ -32,6 +33,10 @@ button {
     width: 180px;
     height: 100%;
     padding-top: 30px;
+  }
+  #sidebarBtn {
+    background-color: #e57373;
+    color: #fff;
   }
 }
 
@@ -52,6 +57,13 @@ button {
   position: fixed;
   bottom: 60px;
   right: 200px;
+}
+#sidebarBtn {
+  position: fixed;
+  bottom: 60px;
+  left: 60xp;
+  background-color: #fff;
+  color: #e57373;
 }
 .modal {
   max-width: 500px;
