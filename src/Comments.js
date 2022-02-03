@@ -20,8 +20,8 @@ export class Comments {
         comment.id = response.name;
         return comment;
       })
-      .then(putCommentToStorage)
-      .then(Comments.render);
+      .then(putCommentToStorage);
+    // .then(Comments.render);
   }
   //метод для рендеринга комментариев
   static render() {
